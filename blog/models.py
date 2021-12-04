@@ -6,4 +6,4 @@ class Article(models.Model):
   access_count = models.PositiveBigIntegerField(default=0)
 
   def __str__(self):
-    return self.title
+    return f'{self.title} アクセス数→{self.access_count}'
