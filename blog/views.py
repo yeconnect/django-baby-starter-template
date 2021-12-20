@@ -1,10 +1,10 @@
-from django.http.response import HttpResponse, HttpResponseNotAllowed
+from django.http.response import HttpResponse
 from django.core import management
 from .models import BlogUser
 
 def create_erd(request):
-    management.call_command('graph_models','blog',pygraphviz=True,output="erd.png") # ER図を作成、erd.pngとして保存
-    with open("./erd.png", "rb") as f:
+    management.call_command('graph_models','blog',pygraphviz=True,output="erd_of_blog.png") # ER図を作成、erd.pngとして保存
+    with open("./erd_of_blog.png", "rb") as f:
         erd_img = f.read()
         return HttpResponse(erd_img, content_type="image/png")
 

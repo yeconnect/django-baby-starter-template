@@ -9,6 +9,13 @@ class BlogUser(models.Model):
     def __str__(self):
         return self.name
 
+class BlogUserMoreData(models.Model):
+    user = models.OneToOneField(BlogUser,on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.user.name
+
 class Blog(models.Model):
     author = models.ForeignKey(BlogUser,on_delete=models.CASCADE,related_name="wrote_blog")
     title = models.CharField(max_length=50)

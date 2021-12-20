@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_extensions', # これ追加
-    'blog'
+    'blog',
+    'todo'
 ]
 
 MIDDLEWARE = [
