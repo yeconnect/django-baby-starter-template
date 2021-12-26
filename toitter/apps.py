@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class TodoConfig(AppConfig):
+class ToitterConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'todo'
+    name = 'toitter'

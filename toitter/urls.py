@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'todo'
+app_name = 'toitter'
 urlpatterns = [
-    path('erd',views.create_erd,name='erd'),
+    path('',views.fl,name='list'),
 ]
