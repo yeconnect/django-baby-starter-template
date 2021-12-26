@@ -1,0 +1,10 @@
+<div>
+  <h1>Toitter</h1>
+  <h2>すべてのユーザー</h2>
+  {% for user in all_users %}
+  <div style="padding:10px;border:solid;border-width:1px">
+      <p>{{ user.username }} </p>
+      <a href="/">フォロー中をみる</a>   <a href="/">フォロワーをみる</a></p>
+  </div>
+  {% endfor %}
+</div>
