@@ -4,7 +4,7 @@ ENV PYTHONUNBUFFERED 1
 # pygraphvizはGraphvizのpythonラッパーのため以下が追加で必要
 RUN apt-get update -y
 RUN apt-get dist-upgrade -y
-RUN apt-get install -y build-essential graphviz-dev graphviz pkg-config
+RUN apt-get install -y graphviz graphviz-dev
 
 RUN mkdir /code
 WORKDIR /code
