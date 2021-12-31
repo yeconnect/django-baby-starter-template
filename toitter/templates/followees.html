@@ -4,7 +4,8 @@
     {% for followee in followees %}
     <div style="padding:10px;border:solid;border-width:1px">
         <p>{{ followee.username }} </p>
-        <a href="/">フォロー中をみる</a>   <a href="/">フォロワーをみる</a></p>
+        <a href="{% url 'toitter:followees' followee.username %}">フォロー中をみる</a>   
+        <a href="{% url 'toitter:followers' followee.username %}">フォロワーをみる</a>
     </div>
     {% endfor %}
   </div>
