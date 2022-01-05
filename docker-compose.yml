@@ -1,6 +1,13 @@
 version: '3'
 
 services:
+  redis:
+      image: redis
+      command: redis-server
+      ports:
+        - "6379:6379"
+      environment:
+        ALLOW_EMPTY_PASSWORD: "yes"
   db:
     image: postgres
     ports: 
