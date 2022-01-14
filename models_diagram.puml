@@ -1,0 +1,161 @@
+@startuml
+class "admin.LogEntry <管理>" as admin.LogEntry #f4d6f1 {
+    ログエントリー
+    --
+    - id (AutoField)
+    + action_time (DateTimeField)
+    ~ user (ForeignKey)
+    ~ content_type (ForeignKey)
+    + object_id (TextField)
+    + object_repr (CharField)
+    + action_flag (PositiveSmallIntegerField)
+    + change_message (TextField)
+    --
+}
+admin.LogEntry *-- auth.User
+admin.LogEntry *-- contenttypes.ContentType
+
+
+class "auth.Permission <認証と認可>" as auth.Permission #e8f4d6 {
+    パーミッション
+    --
+    - id (AutoField)
+    + name (CharField)
+    ~ content_type (ForeignKey)
+    + codename (CharField)
+    --
+}
+auth.Permission *-- contenttypes.ContentType
+
+
+class "auth.Group <認証と認可>" as auth.Group #e8f4d6 {
+    グループ
+    --
+    - id (AutoField)
+    + name (CharField)
+    # permissions (ManyToManyField)
+    --
+}
+auth.Group *--* auth.Permission
+
+
+class "auth.User <認証と認可>" as auth.User #e8f4d6 {
+    ユーザー
+    --
+    - id (AutoField)
+    + password (CharField)
+    + last_login (DateTimeField)
+    + is_superuser (BooleanField)
+    + username (CharField)
+    + first_name (CharField)
+    + last_name (CharField)
+    + email (EmailField)
+    + is_staff (BooleanField)
+    + is_active (BooleanField)
+    + date_joined (DateTimeField)
+    # groups (ManyToManyField)
+    # user_permissions (ManyToManyField)
+    --
+}
+auth.User *--* auth.Group
+auth.User *--* auth.Permission
+
+
+class "contenttypes.ContentType <コンテンツタイプ>" as contenttypes.ContentType #d6f4de {
+    コンテンツタイプ
+    --
+    - id (AutoField)
+    + app_label (CharField)
+    + model (CharField)
+    --
+}
+
+
+class "sessions.Session <セッション>" as sessions.Session #f4e1d6 {
+    セッション
+    --
+    + session_key (CharField)
+    + session_data (TextField)
+    + expire_date (DateTimeField)
+    --
+}
+
+
+class "blog.BlogUser <Blog>" as blog.BlogUser #d6f4d7 {
+    blog user
+    --
+    + id (BigAutoField)
+    + name (CharField)
+    + email (EmailField)
+    # following (ManyToManyField)
+    --
+}
+blog.BlogUser *--* blog.BlogUser
+
+
+class "blog.BlogUserMoreData <Blog>" as blog.BlogUserMoreData #d6f4d7 {
+    blog user more data
+    --
+    + id (BigAutoField)
+    ~ user (OneToOneField)
+    + phone_number (CharField)
+    --
+}
+
+
+class "blog.Blog <Blog>" as blog.Blog #d6f4d7 {
+    blog
+    --
+    + id (BigAutoField)
+    ~ author (ForeignKey)
+    + title (CharField)
+    + content (TextField)
+    + created_at (DateTimeField)
+    + updated_at (DateTimeField)
+    # liked_by (ManyToManyField)
+    --
+}
+blog.Blog *-- blog.BlogUser
+blog.Blog *--* blog.BlogUser
+
+
+class "blog.Comment <Blog>" as blog.Comment #d6f4d7 {
+    comment
+    --
+    + id (BigAutoField)
+    ~ target_blog (ForeignKey)
+    ~ author (ForeignKey)
+    + content (TextField)
+    + created_at (DateTimeField)
+    + updated_at (DateTimeField)
+    --
+}
+blog.Comment *-- blog.Blog
+blog.Comment *-- blog.BlogUser
+
+
+class "todo.Todo <Todo>" as todo.Todo #e6d6f4 {
+    todo
+    --
+    + id (BigAutoField)
+    ~ author (ForeignKey)
+    + title (CharField)
+    --
+}
+todo.Todo *-- blog.BlogUser
+
+
+class "todo.CommentToTodo <Todo>" as todo.CommentToTodo #e6d6f4 {
+    comment to todo
+    --
+    + id (BigAutoField)
+    ~ todo (ForeignKey)
+    ~ author (ForeignKey)
+    + content (TextField)
+    --
+}
+todo.CommentToTodo *-- todo.Todo
+todo.CommentToTodo *-- blog.BlogUser
+
+
+@enduml
