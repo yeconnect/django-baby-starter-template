@@ -87,7 +87,6 @@ class "blog.BlogUser <Blog>" as blog.BlogUser #d6f4d7 {
     + id (BigAutoField)
     + name (CharField)
     + email (EmailField)
-    + sex (CharField)
     # following (ManyToManyField)
     --
 }
