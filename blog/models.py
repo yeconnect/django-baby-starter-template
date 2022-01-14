@@ -3,8 +3,7 @@ from django.db import models
 SEX = (
 		('male', '男性'),
 		('female', '女性'),
-		('other', 'その他'),
-		
+		('other', 'その他')	
 	)
 class BlogUser(models.Model):
     """ ユーザ(適当、認証など考えるとDjangoデフォルトのモデルが良さそう) """
