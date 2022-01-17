@@ -1,0 +1,108 @@
+[
+  {
+    "model": "blog.category",
+    "fields": {
+      "name": "Django"
+    }
+  },
+  {
+    "model": "blog.category",
+    "fields": {
+      "name": "Flask"
+    }
+  },
+  {
+    "model": "blog.category",
+    "fields": {
+      "name": "FastAPI"
+    }
+  },
+  {
+    "model": "blog.category",
+    "fields": {
+      "name": "Laravel"
+    }
+  },
+  {
+    "model": "blog.category",
+    "fields": {
+      "name": "Rails"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "fields": {
+      "name": "データベース設計"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "fields": {
+      "name": "裏技"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "fields": {
+      "name": "AWS"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "fields": {
+      "name": "GCP"
+    }
+  },
+  {
+    "model": "blog.tag",
+    "fields": {
+      "name": "Azure"
+    }
+  },
+  {
+    "model": "blog.blog",
+    "fields": {
+      "title": "Djangoを触ってみよう",
+      "content": "さあ、今回は、、、。Djangoについて語る、、、",
+      "category": "Django",
+      "tag": ["Azure","AWS"]
+    }
+  },
+  
+  {
+    "model": "blog.blog",
+    "fields": {
+      "title": "Flaskを触ってみよう",
+      "content": "さあ、今回は、、、。Flaskについて語る、、、",
+      "category": "Flask",
+      "tag": []
+    }
+  },
+  {
+    "model": "blog.blog",
+    "fields": {
+      "title": "FastAPIを触ってみよう",
+      "content": "さあ、今回は、、、。FastAPIについて語る、、、",
+      "category": "Django",
+      "tag": ["データベース設計","AWS","GCP"]
+    }
+  },
+  {
+    "model": "blog.blog",
+    "fields": {
+      "title": "Laravelを触ってみよう",
+      "content": "さあ、今回は、、、。Laravelについて語る、、、",
+      "category": "Django",
+      "tag": ["Azure","GCP","裏技"]
+    }
+  },
+  {
+    "model": "blog.blog",
+    "fields": {
+      "title": "Railsを触ってみよう",
+      "content": "さあ、今回は、、、。Railsについて語る、、、",
+      "category": "Django",
+      "tag": ["Azure"]
+    }
+  }
+]
