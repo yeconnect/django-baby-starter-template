@@ -14,10 +14,10 @@ def n_plus_one(request):
         for category in blog.tag.all():
             print(category.name)
 
-    return HttpResponse("ターミナルをチェック！")
+    return HttpResponse("<html><body>ターミナルをチェック！</body></html>")
 
 def not_n_plus_one(request):
-    blogs = Blog.objects.all().select_related('category').prefetch_related('tag')
+    blogs = Blog.objects.all().prefetch_related('tag').select_related('category')
 
     # ここでN+1を起こす
     for blog in blogs:
@@ -27,4 +27,4 @@ def not_n_plus_one(request):
         for category in blog.tag.all():
             print(category.name)
 
-    return HttpResponse("ターミナルをチェック！")
+    return HttpResponse("<body>ターミナルをチェック！</body>")
