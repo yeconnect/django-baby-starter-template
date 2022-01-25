@@ -1,20 +1,15 @@
-# python
-db.sqlite3
-*.pyc 
-
-node_modules/
-
-# javascript
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-.pnp/
+/node_modules
+/.pnp
 .pnp.js
 
 # testing
-coverage/
+/coverage
 
 # production
-build/
+/build
 
 # misc
 .DS_Store
