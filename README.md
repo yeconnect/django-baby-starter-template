@@ -1,6 +1,7 @@
-# プロジェクトを作成する
-`docker compose run --rm web django-admin startproject config .`
-# アプリを１つ作成する(ここではtodoアプリ)
-`docker compose run --rm web python manage.py startapp todo`
-# 起動する
-`docker compose up`
+# 初期の構築
+
+## React側のcreate-react-appをする
+`docker compose run --rm react sh -c "npm install -g create-react-app && create-react-app app"`
+
+## Django側のstartprojectをする
+`docker compose run --rm django django-admin startproject config .`

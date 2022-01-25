@@ -1,10 +1,25 @@
-version: '3'
-
+version: "3.2"
 services:
-  web:
-    build: .
+
+  django:
+    build:
+      context: ./django/
+      dockerfile: Dockerfile
     command: python3 manage.py runserver 0.0.0.0:4989
     volumes:
-      - .:/code
+      - ./django:/django_code
     ports:
       - "4989:4989"
+
+  react:
+    build:
+      context: ./react/
+      dockerfile: Dockerfile
+    volumes:
+      - ./react/:/usr/src/app
+    command: sh -c "cd app && npm install && npm start"
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on:
+      - django
