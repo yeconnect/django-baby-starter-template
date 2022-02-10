@@ -20,7 +20,10 @@ from django.urls import path
 
 
 def migrate_func(request):
-    management.call_command('migrate')
+    try:
+        management.call_command('migrate')
+    except Exception as e:
+        print(str(e))
     return HttpResponse('Migrated')
 
 
