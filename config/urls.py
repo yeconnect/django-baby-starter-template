@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.core import management
 from django.http import HttpResponse
-from django.urls import path
+from django.urls import include, path
 
 
 def migrate_func(request):
@@ -35,5 +35,5 @@ def health_func(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('healthz', health_func),
-    path('migrate', migrate_func)
+    path('todo/', include("todo.urls"))
 ]
