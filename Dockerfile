@@ -7,6 +7,6 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
 
-EXPOSE 8002
+EXPOSE 8080
 
 CMD ["gunicorn", "--reload", "-b", ":8080", "config.wsgi:application","-w","2","-k","gevent"]
