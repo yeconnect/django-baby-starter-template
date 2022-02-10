@@ -9,4 +9,4 @@ ADD . /code/
 
 EXPOSE 8002
 
-CMD ["gunicorn", "--reload", "-b", ":8002", "config.wsgi:application","-w","2","-k","gevent"]
+CMD ["gunicorn", "--reload", "-b", ":8080", "config.wsgi:application","-w","2","-k","gevent"]
