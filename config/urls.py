@@ -14,8 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.core import management
 from django.http import HttpResponse
 from django.urls import path
+
+
+def migrate_func(request):
+    management.call_command('migrate')
+    return HttpResponse('Migrated')
 
 
 def health_func(request):
@@ -25,5 +31,6 @@ def health_func(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('healthz', health_func)
+    path('healthz', health_func),
+    path('migrate', migrate_func)
 ]
