@@ -19,6 +19,7 @@ from django.urls import path
 
 
 def health_func(request):
+    print('I did health check')
     return HttpResponse("I'm good")
 
 
