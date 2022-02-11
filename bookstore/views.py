@@ -34,7 +34,8 @@ def create_checkout_session(request):
             success_url=MY_DOMAIN + '/bookstore/success',
             cancel_url=MY_DOMAIN + '/bookstore/cancel',
         )
+        print(checkout_session.url)
         return redirect(checkout_session.url)
     except Exception as e:
-        print(str(e))
+        print("エラー内容："+str(e))
         # ここもう少しハンドリングするべき
