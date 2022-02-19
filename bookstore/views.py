@@ -10,9 +10,9 @@ import uuid
 
 from .models import PaymentHistory, Plan
 
-API_KEY = "a_rMJ9p06Bc1_5dse"
-API_SECRET = "8F1h8BAk2eiIj5DqQ5oVbiqOQywYCHu74+Nd1dLPQfo="
-MERCHANT_ID = "469444504158363648"
+API_KEY = "ここにAPIキー"
+API_SECRET = "ここにAPIシークレット"
+MERCHANT_ID = "ここに加盟店ID"
 
 client = paypayopa.Client(auth=(API_KEY, API_SECRET), production_mode=False)
 client.set_assume_merchant(MERCHANT_ID)
