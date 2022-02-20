@@ -1,6 +1,8 @@
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect, render
+from django.http.response import JsonResponse
 import paypayopa
+import json
 
 from PIL import Image
 import qrcode
@@ -10,9 +12,9 @@ import uuid
 
 from .models import PaymentHistory, Plan
 
-API_KEY = "a_rMJ9p06Bc1_5dse"
-API_SECRET = "8F1h8BAk2eiIj5DqQ5oVbiqOQywYCHu74+Nd1dLPQfo="
-MERCHANT_ID = "469444504158363648"
+API_KEY = ""
+API_SECRET = ""
+MERCHANT_ID = ""
 
 client = paypayopa.Client(auth=(API_KEY, API_SECRET), production_mode=False)
 client.set_assume_merchant(MERCHANT_ID)
@@ -61,13 +63,17 @@ def redirect_to_paypay(request):
     return redirect(paypay_url)
 
 
+@csrf_exempt
 def get_user_from_paymentID(request):
+    paymentID = json.loads(request.body)["paymentID"]
     user = PaymentHistory.objects.get(
-        paymentID=request.data.paymentID)
-    return ({
+        paymentID=paymentID)
+    return JsonResponse({
         'uid': user.uid,
         'plan': user.plan.plan_name
     })
+
+# curl -X POST -H "Content-Type: application/json" -d '{"paymentID":"6f947f54a7074404b94c8ffbc982d911"}' localhost:4989/get-user-from-paymentid
 
 
 def success(request):
