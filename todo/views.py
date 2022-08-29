@@ -1,9 +1,9 @@
-from pydoc import describe
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Todo
-from django.views.decorators.csrf import csrf_exempt
 import json
+
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+from .models import Todo
 
 # Create your views here.
 
@@ -29,8 +29,10 @@ def get_todo(request, id):
 # create Todo
 def post_todo(request):
     if request.method == "POST":
-        title = request.POST.get["title"]
-        description = request.POST.get("description")
+        data = json.loads(request.body)
+        print(request.POST.get("title",None))
+        title = data.get("title")
+        description = data.get("description")
         Todo.objects.create(title=title, description=description)
         return HttpResponse("success")
     else:
