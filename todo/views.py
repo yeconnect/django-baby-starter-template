@@ -29,25 +29,24 @@ def get_todo(request, id):
 # create Todo
 def post_todo(request):
     if request.method == "POST":
-        title = request.POST.get["title"]
-        description = request.POST.get("description")
+        data = json.loads(request.body)
+        title = data.get("title")
+        description = data.get("description")
         Todo.objects.create(title=title, description=description)
         return HttpResponse("success")
     else:
         return HttpResponse("fail")
 
 
+@csrf_exempt
 # update Todo
 def put_todo(request, id):
     if request.method == "PUT":
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        completed = request.POST.get("completed")
-        created_at = request.POST.get("created_at")
-        updated_at = request.POST.get("updated_at")
-        Todo.objects.filter(id=id).update(
-            title=title, description=description, completed=completed, created_at=created_at, updated_at=updated_at
-        )
+        data = json.loads(request.body)
+        title = data.get("title")
+        description = data.get("description")
+        completed = data.get("completed")
+        Todo.objects.filter(id=id).update(title=title, description=description, completed=completed)
         return HttpResponse("success")
     else:
         return HttpResponse("fail")
