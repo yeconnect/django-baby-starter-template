@@ -25,7 +25,7 @@ class ThumbUp(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    blogs = models.ManyToManyField(Blog, related_name="tags")
+    blogs = models.ManyToManyField(Blog, related_name="tags", blank=True, null=True)
 
     def __str__(self):
         return self.name
