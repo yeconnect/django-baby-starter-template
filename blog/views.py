@@ -1,36 +1,30 @@
-from rest_framework.views import APIView
+from rest_framework.decorators import action
 from .models import Blog
-from .serializers import BlogSerializer
+from .serializers import BlogSerializer, BlogSerializer2
 from rest_framework.response import Response
+from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
 
 
-class BlogListView(APIView):
-    def get(self, request, format=None):
-        blogs = Blog.objects.all()
-        serializer = BlogSerializer(blogs, many=True)
+class BlogViewSet(viewsets.ModelViewSet):
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+
+    def retrieve(self, request, pk=None):
+        queryset = Blog.objects.all()
+        blog = get_object_or_404(queryset, pk=pk)
+        serializer = BlogSerializer2(blog)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        serializer = BlogSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
+    @action(detail=False, methods=["get"])
+    def get_blog_list_custom(self, request):
+        blog = Blog.objects.all()
+        serializer = BlogSerializer(blog, many=True)
         return Response(serializer.data)
 
-
-class BlogDetailView(APIView):
-    def get(self, request, pk, format=None):
-        blog = Blog.objects.get(id=pk)
-        serializer = BlogSerializer(blog)
-        return Response(serializer.data)
-
-    def put(self, request, pk, format=None):
+    @action(detail=True, methods=["put"])
+    def put_blog_custom(self, request, pk):
         blog = Blog.objects.get(id=pk)
         serializer = BlogSerializer(blog, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
-
-    def delete(self, request, pk, format=None):
-        blog = Blog.objects.get(id=pk)
-        blog.delete()
-        return Response("Blog deleted")
