@@ -109,4 +109,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "users.CustomUser"
 
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# collectstaticなどを行った際にファイルを設置するstaticフォルダの場所を記述（開発の際は必要ないのでコメントアウトしておく）
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+# htmlファイルなどから読み込むstaticフォルダの場所を記述
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static/")]
