@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-g@!p-g8j0*-qo&!5%dhkn0&j1o(%n7kg%1_$=vb4xqf%wgs!s#
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "djangorunnerdb",
+        "NAME": "drfapprunnerdb",
         "USER": "postgres",
         "PASSWORD": os.environ.get("DB_PASSWORD"),
         "HOST": os.environ.get("DB_HOST"),
