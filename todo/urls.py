@@ -9,4 +9,5 @@ router.register('equal', views.TodoViewSetEqual)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('apiview_test', views.TestShema.as_view())
 ]

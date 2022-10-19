@@ -2,6 +2,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .filters import TodoFilter
 from .models import Todo
@@ -75,4 +76,15 @@ class TodoViewSetEqual(viewsets.ModelViewSet):
     def tekitou_list_generate(self, request, pk=None):
         todo = self.get_object()
         serializer = TekitouListGenerateSerializer(todo)
+        return Response(serializer.data)
+
+
+# APIViewにスキーマヒントを与えられるか検証
+@extend_schema_view(
+    get=extend_schema(responses={200: TodoSerializer(many=True)}, description="TODOを全件取得する"),
+)
+class TestShema(APIView):
+    def get(self, request, format=None):
+        todos = Todo.objects.all()
+        serializer = TodoSerializer(todos, many=True)
         return Response(serializer.data)
