@@ -1,0 +1,32 @@
+[
+    {
+        "model": "todo.todo",
+        "fields": {
+            "title": "First todo",
+            "description": "This is the first todo",
+            "completed": false,
+            "created_at": "2019-01-01T00:00:00Z",
+            "updated_at": "2019-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "todo.todo",
+        "fields": {
+            "title": "Second todo",
+            "description": "This is the second todo",
+            "completed": false,
+            "created_at": "2020-01-01T00:00:00Z",
+            "updated_at": "2020-01-01T00:00:00Z"
+        }
+    },
+    {
+        "model": "todo.todo",
+        "fields": {
+            "title": "Third todo",
+            "description": "This is the third todo",
+            "completed": false,
+            "created_at": "2021-01-01T00:00:00Z",
+            "updated_at": "2021-01-01T00:00:00Z"
+        }
+    }
+]

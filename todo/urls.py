@@ -5,6 +5,7 @@ from todo import views
 
 router = DefaultRouter()
 router.register('', views.TodoViewSet)
+router.register('equal', views.TodoViewSetEqual)
 
 urlpatterns = [
     path('', include(router.urls)),
