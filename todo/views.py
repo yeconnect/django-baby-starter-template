@@ -27,6 +27,21 @@ class TodoViewSet(viewsets.ModelViewSet):
     serializer_class = TodoSerializer
     filterset_class = TodoFilter
 
+    """
+    """
+    def get_serializer_class(self):
+        # actionによってserializerを変えることで、drf-spectacularに使うserializerを伝えることができ、自動生成がうまくいく。
+        if self.action == 'list':
+            return TodoSerializer
+        elif self.action == 'retrieve':
+            return TodoSerializer
+        elif self.action == 'create':
+            return TodoSerializer
+        elif self.action == 'update':
+            return TodoSerializer
+        elif self.action == 'partial_update':
+            return TodoSerializer
+
     @extend_schema(responses={200: TodoSerializer(many=True)}, description="完了済みのTODOを取得する")
     @action(detail=False, methods=['get'])
     def completed(self, request):
