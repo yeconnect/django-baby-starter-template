@@ -1,6 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
 from rest_framework import viewsets
 from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -22,13 +23,23 @@ class ModelViewSet(mixins.CreateModelMixin,
 となっているから、必要ないHTTPメソッドは省ける。
 """
 
+# APIView、get, post, put, patch, delete
+class PageNumberPagination(PageNumberPagination):
+    page_size = 1000 
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
+@extend_schema_view(
+    list=extend_schema(responses={200: TodoSerializer(many=True)}),
+    comment=extend_schema(request=CommentSerializer , responses={204: None}, description="{pk}番目のTODOにコメントを追加する"),
+)
 class TodoViewSet(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
     filterset_class = TodoFilter
 
-    """
-    """
+    pagination_class = PageNumberPagination
+
     def get_serializer_class(self):
         # actionによってserializerを変えることで、drf-spectacularに使うserializerを伝えることができ、自動生成がうまくいく。
         if self.action == 'list':
@@ -41,6 +52,23 @@ class TodoViewSet(viewsets.ModelViewSet):
             return TodoSerializer
         elif self.action == 'partial_update':
             return TodoSerializer
+
+    def list(self, request, *args, **kwargs):
+        return super().list(request, *args, **kwargs)
+
+    @action(detail=True, methods=['get'])
+    def comment(self, request, pk=None):
+        print(f'ここで{pk}番へのコメントDB処理')        
+        return Response({"message":"ok"})
+
+class TodoViewSets(viewsets.ModelViewSet):
+    queryset = Todo.objects.all()
+    serializer_class = TodoSerializer
+    filterset_class = TodoFilter
+
+    """
+    """
+    
 
     @extend_schema(responses={200: TodoSerializer(many=True)}, description="完了済みのTODOを取得する")
     @action(detail=False, methods=['get'])
