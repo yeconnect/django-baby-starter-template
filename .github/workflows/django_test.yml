@@ -14,4 +14,4 @@ jobs:
 
       - name: Run Tests
         run: |
-          python3 manage.py test blog.tests
+          docker compose run --rm web python3 manage.py test blog.tests
