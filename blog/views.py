@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from .pagination import StandardResultsSetPagination
 from django.db.models import Prefetch
-from users.permissions import IsAdminOrReadOnly
+from users.permissions import IsAdminOrReadOnly, IsAdminOrStaffOrReadOnly
 from drf_spectacular.utils import extend_schema
 
 
@@ -46,6 +46,8 @@ class BlogViewWithoutSerializer(APIView):
 
 
 class BlogViewWithSerializer(APIView):
+    permission_classes = [IsAdminOrStaffOrReadOnly]
+
     def get(self, request, format=None):
         blogs = Blog.objects.all()
         serializer = BlogSerializer(blogs, many=True)
