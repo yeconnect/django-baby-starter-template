@@ -2,9 +2,8 @@ name: "Django CI for Pull Request"
 
 on:
   pull_request:
-    branches: [main]
-    paths:
-      - "/**"
+    types:
+      - opened
 
 jobs:
   test-container-job:
