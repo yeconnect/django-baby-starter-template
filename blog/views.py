@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from .pagination import StandardResultsSetPagination
 from django.db.models import Prefetch
+from users.permissions import IsAdminOrReadOnly
 from drf_spectacular.utils import extend_schema
 
 
@@ -149,6 +150,7 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogModelSerializer
     pagination_class = StandardResultsSetPagination
+    permission_classes = [IsAdminOrReadOnly]
 
     @extend_schema(request=BlogModelSerializer, description="HOGEHOGE")
     @action(detail=False, methods=["get"])
@@ -156,4 +158,3 @@ class BlogViewSet(viewsets.ModelViewSet):
         serializer = BlogModelSerializer(data=request.data)
         serializer.is_valid()
         return Response(status=status.HTTP_200_OK)
-

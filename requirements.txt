@@ -2,3 +2,5 @@ Django>=3.2
 djangorestframework
 django-debug-toolbar
 drf-spectacular
+djoser
+djangorestframework_simplejwt
