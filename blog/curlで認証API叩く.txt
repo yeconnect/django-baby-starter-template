@@ -1,0 +1,1 @@
+curl -X GET http://localhost:8000/blog/with_serializer/ -H 'Authorization: JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjY5MDk4OTIyLCJqdGkiOiJiZDBmNzRlYmE5OWU0ZjdhYjRlYjE2MWE1MjBhMTdiYyIsInVzZXJfaWQiOjF9.TfkMVLteVmATRqKkbamb4CTxgcGHUNxxHYiTXdO7LEc' -H 'content-type: application/json'
