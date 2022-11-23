@@ -42,6 +42,7 @@ class BlogModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blog
         fields = "__all__"
+        read_only_fields = ["created_at", "updated_at"]
 
 
 class ThumbUpReadSerializer(serializers.ModelSerializer):

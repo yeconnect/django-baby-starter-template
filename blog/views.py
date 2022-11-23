@@ -10,6 +10,7 @@ from .pagination import StandardResultsSetPagination
 from django.db.models import Prefetch
 from users.permissions import IsAdminOrReadOnly, IsAdminOrStaffOrReadOnly
 from drf_spectacular.utils import extend_schema
+from rest_framework import permissions
 
 
 class BlogViewWithoutSerializer(APIView):
@@ -46,7 +47,7 @@ class BlogViewWithoutSerializer(APIView):
 
 
 class BlogViewWithSerializer(APIView):
-    permission_classes = [IsAdminOrStaffOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly, permissions.IsAuthenticated]
 
     def get(self, request, format=None):
         blogs = Blog.objects.all()
@@ -152,7 +153,7 @@ class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogModelSerializer
     pagination_class = StandardResultsSetPagination
-    permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAdminOrStaffOrReadOnly]
 
     @extend_schema(request=BlogModelSerializer, description="HOGEHOGE")
     @action(detail=False, methods=["get"])

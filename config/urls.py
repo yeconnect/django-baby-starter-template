@@ -25,7 +25,7 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
-    
+
     urlpatterns += [
     path('api/auth/', include('djoser.urls.jwt')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
