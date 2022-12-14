@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('youtube/', include('youtube.urls')),
+    path('chatapp/', include('chatapp.urls')),
 ]
 
 """ ----------------デバッグがTrueだった場合----------------------"""
