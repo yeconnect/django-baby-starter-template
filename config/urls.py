@@ -14,8 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.http import JsonResponse, HttpResponse
+from django.http.response import HttpResponse
+
+def top_page_func(request):
+    print('Hello World!!!')
+    return HttpResponse('Hello World!!!')
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('hello', top_page_func),
+    path('chatapp/' , include('chatapp.urls'))
 ]
