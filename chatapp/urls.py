@@ -10,4 +10,5 @@ def chatapp_like_func(request):
 
 urlpatterns = [
     path('like', chatapp_like_func),
+    path('get_user/<int:user_id>', views.get_user),
 ]
