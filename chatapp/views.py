@@ -12,7 +12,6 @@ def get_user(request, user_id):
     # slect * from user where id = user_id
     data = {
         'name': user.name,
-        'image': user.image,
         'id':user_id,
     }
     return JsonResponse(data)
